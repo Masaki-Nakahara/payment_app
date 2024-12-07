@@ -69,3 +69,4 @@ def register():
     
     
 print('Hello!')
+print('happy!')
