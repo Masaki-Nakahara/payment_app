@@ -6,17 +6,17 @@ DATABASE = 'database.db'
 @app.route("/")
 def index():
     con = sqlite3.connect(DATABASE)
-    db_books = con.execute('SELECT * FROM books').fetchall()
+    db_members = con.execute('SELECT * FROM members').fetchall()
     con.close()
 
-    books = []
+    members = []
     
-    for row in db_books:
-        books.append({'title': row[0], 'price': row[1]})
+    for row in db_members:
+        members.append({'name': row[0]})
         
     return render_template(
         'index.html',
-        books = books
+        members = members
     )
     
     
@@ -28,12 +28,11 @@ def form():
 
 @app.route('/register', methods = ['POST'])
 def register():
-    title = request.form['title']
-    price = request.form['price']
+    name = request.form['name']
     
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO books VALUES(?,?)',
-                [title, price])
+    con.execute('INSERT INTO members VALUES(?)',
+                [name])
     con.commit()
     con.close()
     
