@@ -38,4 +38,4 @@ def register():
     
     return redirect(url_for('index'))
     
-    
+print('hello')
