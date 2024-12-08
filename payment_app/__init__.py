@@ -6,4 +6,5 @@ from payment_app.app import *
 
 from payment_app import db
 #空のテーブルの取得
-db.create_books_table()
+db.create_members_table()
+db.create_group_table()
