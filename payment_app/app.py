@@ -79,8 +79,3 @@ def register_group():
     return redirect(url_for('index'))
 
 
-
-    
-    
-    
-
