@@ -3,25 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <title>masakiアプリ</title>
-        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/form_style.css">
     </head>
     <body>
+    <h1>グループ名</h1>
+
+    <form method="post">
+  
+        <input type="text" name = "group_name" value = "{{group_name}}">
     
-    <h1>フォーム画面</h1>
+        <h1>追加メンバー</h1>
     
-    <form method="post" action="{{url_for('register')}}">
         <table border="1">
             <tr>
                 <th>名前</th>
             </tr>
-
             <tr>
-                <td><input type="text" name = "name"></td>
+                <td><input type="text" name = "member_name"></td>
             </tr>
         </table>
+
         <br>
-        <input type="submit" value="登録">
+        <button type="submit", formaction="{{ url_for('register_member')}}">登録</button>
+    
+        <div class="member-list">
+            {% for member in members %}
+            <div class="member-item">
+                <span>{{ member.name }}</span>
+                <div class="delete-form">
+                    <button type="submit" class="delete-button", formaction="{{ url_for('delete_member', id = member.id) }}">×</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <button type="submit", formaction="{{ url_for('register_group')}}">グループ作成</button>
+  
+
     </form>
+
+    <a href="{{url_for('index')}}">一覧に戻る</a>
     
     </body>
 </html>
